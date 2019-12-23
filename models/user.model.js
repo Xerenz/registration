@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// passport local mongoose
+const passportLocalMongoose = require("passport-local-mongoose");
+
 let UserSchema = new Schema(
     {
         name : {type: String, required: true, max: 100},
@@ -12,5 +15,7 @@ let UserSchema = new Schema(
         accomodation : {type: Schema.Types.ObjectId, ref: "Accomodation"}
     }
 );
+
+UserSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("User", UserSchema);
